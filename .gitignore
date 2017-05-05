@@ -11,3 +11,5 @@ sdist
 *.sqlite3
 
 .devassistant
+.idea
+.idea/*

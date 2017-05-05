@@ -60,14 +60,14 @@ def get_status(grouped_tasks, pid):
         for val in range(0, count):
             pid_str = str(grouped_tasks[key][val]['pid'])
             if pid == pid_str.translate(None, '<>'):
-                if key == 'indexer':
+                if key == 'indexer' or key == 'database_compaction':
                    status = grouped_tasks[key][val]['changes_done']
                 else:
                    status = grouped_tasks[key][val]['progress']
                 print status
 
 
-def get_type(grouped_tasks,pid):
+def get_type(grouped_tasks, pid):
     count_dict = count_tasks(grouped_tasks)
     for key in grouped_tasks:
         count = count_dict[key]
