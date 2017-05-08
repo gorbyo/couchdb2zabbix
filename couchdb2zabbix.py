@@ -80,13 +80,13 @@ def get_type(grouped_tasks, pid):
 def main(viewurl):
     tasks_json = get_active_tasks(url=viewurl)
     tasks_dict = group_by_tasks(tasks_json)
-    if not (arguments().parse_args().pid is None) and (arguments().parse_args().type is None) or \
-            (arguments().parse_args().type == 'no'):
-        pid = arguments().parse_args().pid
-        get_status(tasks_dict, pid)
-    elif not (arguments().parse_args().pid is None) and (arguments().parse_args().type == 'yes'):
-        pid = arguments().parse_args().pid
-        get_type(tasks_dict, pid)
+    if not (arguments().parse_args().pid is None):
+        if (arguments().parse_args().type is None) or (arguments().parse_args().type == 'no'):
+            pid = arguments().parse_args().pid
+            get_status(tasks_dict, pid)
+        elif arguments().parse_args().type == 'yes':
+            pid = arguments().parse_args().pid
+            get_type(tasks_dict, pid)
     else:
         get_tasks(tasks_dict)
 
